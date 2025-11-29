@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>ChefExpress - Cursos de Gastronomia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* ====== ESTILO GERAL ====== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #ffffff;
+    color: #333;
+}
+
+header {
+    background: #ffffff;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+}
+
+h1 { margin: 0; font-size: 28px; }
+h2 {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* ====== GRID ====== */
+.cursos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    width: 95%;
+    margin: 20px auto 60px auto;
+}
+
+.curso {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #e5e5e5;
+    text-align: center;
+    transition: .2s;
+}
+
+.curso:hover {
+    transform: scale(1.03);
+}
+
+.curso img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+button {
+    background: #000;
+    color: #fff;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #333;
+}
+
+/* ====== PAGAMENTO ====== */
+#pagamento {
+    display: none;
+    padding: 25px;
+}
+
+#pagamento h2 {
+    margin-top: 10px;
+}
+
+.pix-box {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 6px #ddd;
+}
+
+#pixKey {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>ChefExpress</h1>
+    <p>Os melhores cursos de gastronomia por apenas R$ 23,90</p>
+</header>
+
+<!-- ================= LISTA DE CURSOS ================= -->
+<div id="catalogo">
+
+<!-- ================= SEÇÃO GOURMET ================= -->
+<h2>Cursos Gourmet</h2>
+<div class="cursos">
+<script>
+const gourmet = [
+{titulo:"Gastronomia Italiana",img:"https://images.unsplash.com/photo-1525755662778-989d0524087e"},
+{titulo:"Massas e Molhos Premium",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+{titulo:"Cortes Nobres e Carnes",img:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601"},
+{titulo:"Culinária Francesa",img:"https://images.unsplash.com/photo-1514516430031-43a67c5d1a65"},
+{titulo:"Sobremesas Finas",img:"https://images.unsplash.com/photo-1498654896293-37aacf113fd9"},
+{titulo:"Gastronomia Mediterrânea",img:"https://images.unsplash.com/photo-1525755662778-989d0524087e"},
+{titulo:"Cozinha Japonesa Premium",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+{titulo:"Chocolate Gourmet",img:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601"},
+{titulo:"Pães Artesanais",img:"https://images.unsplash.com/photo-1498654896293-37aacf113fd9"},
+{titulo:"Risotos Perfeitos",img:"https://images.unsplash.com/photo-1525755662778-989d0524087e"},
+{titulo:"Drinks e Coquetéis",img:"https://images.unsplash.com/photo-1582456891925-5da8f4a6e3c2"},
+{titulo:"Hambúrguer Gourmet",img:"https://images.unsplash.com/photo-1550317138-10000687a72b"},
+{titulo:"Gastronomia Árabe",img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+{titulo:"Culinária Mexicana",img:"https://images.unsplash.com/photo-1601924638867-3ec2a07fde14"},
+{titulo:"Cozinha Alemã",img:"https://images.unsplash.com/photo-1499028344343-cd173ffc68a9"}
+];
+
+gourmet.forEach(c => {
+    document.write(`
+        <div class="curso">
+            <img src="${c.img}">
+            <h3>${c.titulo}</h3>
+            <p>10 receitas inclusas</p>
+            <p><b>R$ 23,90</b></p>
+            <button onclick="pagar('${c.titulo}')">Comprar via Pix</button>
+        </div>
+    `);
+});
+</script>
+</div>
+
+<!-- ================= SEÇÃO VEGANA ================= -->
+<h2>Cursos Veganos</h2>
+<div class="cursos">
+<script>
+const veganos = [
+{titulo:"Culinária Vegana 1",img:"https://images.unsplash.com/photo-1506084868230-bb9d95c24759"},
+{titulo:"Refeições Naturais",img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd"},
+{titulo:"Doces Veganos",img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd"},
+{titulo:"Vegano Gourmet",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+{titulo:"Culinária Orgânica",img:"https://images.unsplash.com/photo-1498654896293-37aacf113fd9"},
+{titulo:"Hambúrguer Vegano",img:"https://images.unsplash.com/photo-1550317138-10000687a72b"},
+{titulo:"Café da Manhã Vegano",img:"https://images.unsplash.com/photo-1506084868230-bb9d95c24759"},
+{titulo:"Vegano Low Carb",img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd"},
+{titulo:"Pratos Verdes Gourmet",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+{titulo:"Lanches Veganos",img:"https://images.unsplash.com/photo-1498654896293-37aacf113fd9"},
+{titulo:"Queijos Veganos",img:"https://images.unsplash.com/photo-1582456891925-5da8f4a6e3c2"},
+{titulo:"Vegano para Iniciantes",img:"https://images.unsplash.com/photo-1506084868230-bb9d95c24759"},
+{titulo:"Smoothies e Detox",img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd"},
+{titulo:"Salgados Veganos",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+{titulo:"Culinária Natural",img:"https://images.unsplash.com/photo-1498654896293-37aacf113fd9"}
+];
+
+veganos.forEach(c => {
+    document.write(`
+        <div class="curso">
+            <img src="${c.img}">
+            <h3>${c.titulo}</h3>
+            <p>10 receitas inclusas</p>
+            <p><b>R$ 23,90</b></p>
+            <button onclick="pagar('${c.titulo}')">Comprar via Pix</button>
+        </div>
+    `);
+});
+</script>
+</div>
+
+<!-- ================= SEÇÃO COMIDAS CASEIRAS ================= -->
+<h2>Comidas Caseiras</h2>
+<div class="cursos">
+<script>
+const caseiras = [
+{titulo:"Comida Caseira 1",img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+{titulo:"Arroz e Feijão Perfeitos",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+{titulo:"Salgados Caseiros",img:"https://images.unsplash.com/photo-1514516430031-43a67c5d1a65"},
+{titulo:"Sobremesas Caseiras",img:"https://images.unsplash.com/photo-1498654896293-37aacf113fd9"},
+{titulo:"Comidas Brasileiras",img:"https://images.unsplash.com/photo-1525755662778-989d0524087e"},
+{titulo:"Doces de Festa",img:"https://images.unsplash.com/photo-1550317138-10000687a72b"},
+{titulo:"Tortas Caseiras",img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+{titulo:"Assados Caseiros",img:"https://images.unsplash.com/photo-1499028344343-cd173ffc68a9"},
+{titulo:"Café da Manhã Caseiro",img:"https://images.unsplash.com/photo-1506084868230-bb9d95c24759"},
+{titulo:"Receitas Simples",img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd"},
+{titulo:"Frango Caseiro",img:"https://images.unsplash.com/photo-1525755662778-989d0524087e"},
+{titulo:"Macarrão Caseiro",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+{titulo:"Culinária do Dia a Dia",img:"https://images.unsplash.com/photo-1498654896293-37aacf113fd9"},
+{titulo:"Receitas Rápidas",img:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601"},
+{titulo:"Comida Caseira Avançada",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"}
+];
+
+caseiras.forEach(c => {
+    document.write(`
+        <div class="curso">
+            <img src="${c.img}">
+            <h3>${c.titulo}</h3>
+            <p>10 receitas inclusas</p>
+            <p><b>R$ 23,90</b></p>
+            <button onclick="pagar('${c.titulo}')">Comprar via Pix</button>
+        </div>
+    `);
+});
+</script>
+</div>
+
+</div><!-- FIM CATÁLOGO -->
+
+<!-- ================= PAGAMENTO ================= -->
+<div id="pagamento">
+    <h2 id="cursoTitulo"></h2>
+    <div class="pix-box">
+        <p>Chave Pix (copie e cole):</p>
+        <p id="pixKey">pietroluccarufino7@gmail.com</p>
+        <button onclick="copiarPix()">Copiar chave Pix</button>
+    </div>
+    <br>
+    <button onclick="voltar()">Voltar ao catálogo</button>
+</div>
+
+<script>
+function pagar(curso) {
+    document.getElementById("cursoTitulo").innerText =
+        "Pagamento do curso: " + curso;
+
+    document.getElementById("catalogo").style.display = "none";
+    document.getElementById("pagamento").style.display = "block";
+}
+
+function voltar() {
+    document.getElementById("catalogo").style.display = "block";
+    document.getElementById("pagamento").style.display = "none";
+}
+
+function copiarPix() {
+    navigator.clipboard.writeText("pietroluccarufino7@gmail.com");
+    alert("Chave Pix copiada!");
+}
+</script>
+
+</body>
+</html>
